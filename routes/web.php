@@ -22,3 +22,4 @@ Route::get('login', [UserAuthController::class, 'login']);
 
 Route::get('register', [UserAuthController::class, 'register']);
 
+Route::get('create', [UserAuthController::class, 'create'])->name('auth.create');

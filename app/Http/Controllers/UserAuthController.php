@@ -16,4 +16,12 @@ class UserAuthController extends Controller
         return view('auth.register');
     }
 
+    function create(Request $request){
+        // Validate requests
+        $request->validate([
+            'name'=>'required',
+            'mail'=>'required|email|unique:users',
+            'password'=>'required|min:5|max:12'
+        ]);
+    }
 }
