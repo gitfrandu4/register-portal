@@ -10,11 +10,25 @@
 <body>
     <div class="container">
         <div class="row" style="margin-top:45px">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-4 mx-auto">
                 <h4>Registrarse</h4>
                 <hr>
-                <form action="{{ route('auth.create') }}">
+                <form action="{{ route('auth.create') }}" method="POST">
                 @csrf
+
+                <div class="results">
+                    @if (Session::get('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success')}}
+                        </div>
+                    @endif
+
+                    @if (Session::get('fail'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('fail')}}
+                        </div>
+                    @endif
+                </div>
                     <div class="form-group">
                         <label for="name">Nombre</label>
                         <input type="text" class="form-control" name="name" placeholder="Nombre completo" value="{{ old('name') }}">
@@ -26,10 +40,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="mail">Correo electrónico</label>
-                        <input type="text" class="form-control" name="mail" placeholder="ejemplo@mail.com" value="{{ old('mail') }}">
+                        <label for="email">Correo electrónico</label>
+                        <input type="text" class="form-control" name="email" placeholder="ejemplo@mail.com" value="{{ old('email') }}">
                         <span class="text-danger">
-                            @error('mail')
+                            @error('email')
                                 {{ $message }}
                             @enderror
                         </span>
@@ -37,7 +51,7 @@
 
                     <div class="form-group">
                         <label for="password">Contraseña</label>
-                        <input type="password" class="form-control" name="password" placeholder="password" value="{{ old('password') }}">>
+                        <input type="password" class="form-control" name="password" placeholder="password">
                         <span class="text-danger">
                             @error('password')
                                 {{ $message }}

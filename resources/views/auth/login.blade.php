@@ -10,17 +10,21 @@
 <body>
     <div class="container">
         <div class="row" style="margin-top:45px">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-4 mx-auto">
                 <h4>Iniciar sesión</h4>
                 <hr>
-                <form action="">
+                <form action="{{ route('auth.check') }}"  method="POST">
+                @csrf
                     <div class="form-group">
-                        <label for="mail">Correo electrónico</label>
-                        <input type="text" class="form-control" name="mail" placeholder="ejemplo@mail.com">
+                        <label for="email">Correo electrónico</label>
+                        <input type="text" class="form-control" name="email" placeholder="ejemplo@mail.com"  value="{{ old('email') }}">
+                        <span class="text-danger">@error('email'){{ $message }}@enderror
+                        </span>
                     </div>
                     <div class="form-group">
                         <label for="password">Contraseña</label>
                         <input type="password" class="form-control" name="password" placeholder="password">
+                        <span class="text-danger">@error('password'){{ $message }}@enderror
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-block btn-primary">Login</button>

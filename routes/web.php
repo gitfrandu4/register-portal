@@ -22,4 +22,6 @@ Route::get('login', [UserAuthController::class, 'login']);
 
 Route::get('register', [UserAuthController::class, 'register']);
 
-Route::get('create', [UserAuthController::class, 'create'])->name('auth.create');
+Route::post('create', [UserAuthController::class, 'create'])->name('auth.create');
+
+Route::post('check', [UserAuthController::class, 'check'])->name('auth.check');
