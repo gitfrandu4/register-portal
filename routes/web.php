@@ -15,7 +15,7 @@ Use App\Http\Controllers\UserAuthController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('login', [UserAuthController::class, 'login']);
@@ -25,3 +25,7 @@ Route::get('register', [UserAuthController::class, 'register']);
 Route::post('create', [UserAuthController::class, 'create'])->name('auth.create');
 
 Route::post('check', [UserAuthController::class, 'check'])->name('auth.check');
+
+Route::get('profile', [UserAuthController::class, 'profile']);
+
+Route::get('logout', [UserAuthController::class, 'logout']);

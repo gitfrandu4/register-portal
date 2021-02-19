@@ -45,5 +45,40 @@ class UserAuthController extends Controller
             'email'=>"required|email",
             'password'=>"required|min:5|max:12"
         ]);
+
+        // If form validated successfully, then process login
+        $user = User::where('email', "=", $request->email)->first();
+        if($user){
+            if(Hash::check($request->password, $user->password)){
+                
+                // If password match, then redirect user to profile
+                $request->session()->put('LoggedUser', $user->id);
+                return redirect('profile');
+            } else {
+                return back()->with('fail', 'La contraseña no es válida. D:');
+            }
+        } else {
+            return back()->with('fail', 'No se ha encontrado ninguna cuenta asociada a esta dirección de correo. D:');
+        }
+    }
+
+    function profile() {
+
+        if(session()->has('LoggedUser')){
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+            
+            $data = [
+                'LoggedUserInfo' => $user
+            ];
+        }
+
+        return view('admin.profile', $data);
+    }
+
+    function logout(){
+        if(session()->has('LoggedUser')){
+            session()->pull('LoggedUser');
+            return redirect('login');
+        }
     }
 }
