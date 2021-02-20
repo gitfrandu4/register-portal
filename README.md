@@ -13,9 +13,28 @@ Práctica de la asignatura DAW2 donde se pide desarrollar un portal con registro
 * **Lenguajes de programación**: PHP (> v7.4)
 * **PaaS**: Heroku
 
+<h2>Base de datos</h2>
+
+En el fichero `.env` se han de declarar las variables de conexión a la base de datos:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=register_portal_bd
+DB_USERNAME=root
+DB_PASSWORD=password123
+```
+
+Y ejecutar: `php artisan migrate`
+
+
 <h2>Heroku</h2>
 
 http://app-register-portal.herokuapp.com/
 
 * Usuario de prueba: prueba@gmail.com
 * Contraseña: password
+
+<h2>Referencias</h2>
+
+* Tutorial Authentication con Laravel: [enlace](https://youtu.be/UGW01ttsfpQ)
